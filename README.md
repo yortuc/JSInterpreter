@@ -64,7 +64,7 @@ Three basic functinality demonstrated here.
 
 2. expose more native functions
 
-	▢ $.get
+	✓ download contents of url
 
 	▢ $.post
 
