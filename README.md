@@ -13,8 +13,11 @@ Exposing required native functionality to javascript vm, like node.js does, one 
 For now, we dont have network functionality, but only 3 native calls such as,
 
 require(fileName): imports common.js module
+
 input(): reads from command line
+
 log(String): prints out to command line
+
 
 ##Compile project
 First of all, you need to compile project using swift compiler.
@@ -44,16 +47,27 @@ log("area = " + lib.circleArea(radius));
 ```
 
 Three basic functinality demonstrated here. 
+
 1. first, load a module called 'matlib' which cotains  functions we need. 
+
 2. log something to the command line
+
 3. read from command line and assign the user typed value to a variable
+
 
 ##Roadmap
 1. improve require function
-▢ improve to load modules from relative paths
-▢ some commonjs modules cannot be loaded (markdown.js), create actual evaluation of module.exports object.
+
+	▢ improve to load modules from relative paths
+
+	▢ some commonjs modules cannot be loaded (markdown.js), create actual evaluation of module.exports object.
+
 2. expose more native functions
-▢ $.get
-▢ $.post
+
+	▢ $.get
+
+	▢ $.post
+
 3. improve logging function
-▢ colors, icons etc ...
+
+	▢ colors, icons etc ...
