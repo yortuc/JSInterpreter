@@ -54,7 +54,7 @@ Three basic functinality demonstrated here.
 
 3. read from command line and assign the user typed value to a variable
 
-#Download content app
+##Download content app
 
 ```js
 log("welcome to git explorer");
