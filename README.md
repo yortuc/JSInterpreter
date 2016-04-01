@@ -1,6 +1,8 @@
 JSInterpreter
 =====================
 
+![JSInterpreter](screen.png)
+
 This is an experiment on Swift, JavaScriptCore and out-of-xcode compilation of
 Swift and Objective-C projects. 
 
