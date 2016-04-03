@@ -1,4 +1,3 @@
-
 var squareArea = function(c) {
 	return c * c;
 }

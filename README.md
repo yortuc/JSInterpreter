@@ -81,7 +81,7 @@ objData.forEach(function(repo) {
 
 	▢ improve to load modules from relative paths
 
-	▢ some commonjs modules cannot be loaded (markdown.js), create actual evaluation of module.exports object.
+	✓ some commonjs modules cannot be loaded (markdown.js), create actual evaluation of module.exports object. markdown.js works now.
 
 2. expose more native functions
 

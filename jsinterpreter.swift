@@ -3,6 +3,10 @@ import JavaScriptCore
 
 let context = JSContext()
 
+context.exceptionHandler = { context, exception in
+    print("JS Error: \(exception)")
+}
+
 let log: @convention(block) String -> Void = { text in
 	print(">> \(text)")
 }
@@ -19,13 +23,18 @@ let require: @convention(block) String -> JSValue = { moduleName in
 	print("loading file \(moduleName)")
 
 	context.evaluateScript("var module = {};")
+	context.evaluateScript("module.exports = {};")
+	context.evaluateScript("var exports = module.exports;")
 
 	let path = NSBundle.mainBundle().pathForResource(moduleName, ofType: "js")
 	let contentData = NSFileManager.defaultManager().contentsAtPath(path!)
 	let content = NSString(data: contentData!, encoding: NSUTF8StringEncoding) as? String
 	let jsv = context.evaluateScript(content)
 
-	return jsv
+	let moduleObject = context.objectForKeyedSubscript("module")
+	let moduleExports = moduleObject.valueForProperty("exports")
+
+	return moduleExports
 }
 
 let download: @convention(block) String -> String = { url in
