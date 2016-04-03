@@ -3,12 +3,14 @@ import JavaScriptCore
 
 let context = JSContext()
 
+var debugLog = false
+
 context.exceptionHandler = { context, exception in
     print("JS Error: \(exception)")
 }
 
 let log: @convention(block) String -> Void = { text in
-	print(">> \(text)")
+	print("\(text)")
 }
 
 let input: @convention(block) Void -> String = {
@@ -20,7 +22,9 @@ let input: @convention(block) Void -> String = {
 }
 
 let require: @convention(block) String -> JSValue = { moduleName in
-	print("loading file \(moduleName)")
+	if debugLog {
+		print("loading file \(moduleName)")
+	}
 
 	context.evaluateScript("var module = {};")
 	context.evaluateScript("module.exports = {};")
@@ -38,7 +42,7 @@ let require: @convention(block) String -> JSValue = { moduleName in
 }
 
 let download: @convention(block) String -> String = { url in
-	print("downloading data from \(url)")
+	print("downloading \(url)")
 	if let data = NSData(contentsOfURL: NSURL(string: url)!) {
 		let datastring = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
 		return datastring
@@ -58,6 +62,8 @@ print("welcome to js interpreter")
 
 // execute file with agrs
 if Process.arguments.count > 1 {
+	context.setObject(Process.arguments, forKeyedSubscript: "_args")
+	print("running \(Process.arguments[1])")
 	require(Process.arguments[1])
 }
 else {
